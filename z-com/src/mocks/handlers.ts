@@ -20,5 +20,8 @@ export const handlers=[
                     'Set-cookie':'connect.sid=;HttpOnly;Path=/;Max-Age=0'
                 }
             })
+        }),
+        http.post('api/user', async({request})=>{
+            return HttpResponse.text(JSON.stringify('user_exists'),{status:403})
         })
 ]
