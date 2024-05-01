@@ -1,14 +1,31 @@
 "use client";
 
 import style from "@/app/(beforelogin)/_component/signup.module.css";
-import BackButton from "@/app/(afterlogin)/home/_component/backButton";
-import { redirect } from "next/navigation";
-import onsubmit from "@/app/(beforelogin)/_lib/signup";
+import BackButton from "@/app/(beforelogin)/_component/BackButton";
+import onSubmit from "@/app/(beforelogin)/_lib/signup";
+import { useFormState, useFormStatus } from "react-dom";
+
+function showMessage(message:String|null){
+  if(message==='no_id'){
+    return '아이디 입력 필요';
+  }
+  if(message==='no_pwd'){
+    return '비밀번호 입력 필요';
+  }
+  if(message==='no_image'){
+    return '이미지 삽입 필요';
+  }
+  if(message==='no_nick'){
+    return '닉네임 입력 필요';
+  }
+  return '';
+}
+
 
 export default function Signup(){
 
-    const submit=onsubmit;
-
+    const [state, formAction]=useFormState(onSubmit,{message:null});
+    const {pending} = useFormStatus();
 
     return(
         <>
@@ -18,7 +35,7 @@ export default function Signup(){
               <BackButton/>
               <div>계정을 생성하세요.</div>
             </div>
-            <form action={submit}>
+            <form action={formAction}>
               <div className={style.modalBody}>
                 <div className={style.inputDiv}>
                   <label className={style.inputLabel} htmlFor="id">아이디</label>
@@ -46,7 +63,8 @@ export default function Signup(){
                 </div>
               </div>
               <div className={style.modalFooter}>
-                <button type="submit" className={style.actionButton}>가입하기</button>
+                <button type="submit" className={style.actionButton} disabled={pending}>가입하기</button>
+                <div className={style.errer}>{showMessage(state?.message)}</div>
               </div>
             </form>
           </div>

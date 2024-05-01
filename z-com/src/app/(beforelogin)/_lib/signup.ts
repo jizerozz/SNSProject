@@ -2,10 +2,9 @@
 
 import { redirect } from "next/navigation";
 
-export default function signup(){
+const submit=async(prevstate:any, formData:FormData)=>{
     let shouldRedirect=false;
-    
-    const submit=async(formData:FormData)=>{
+
       //이 곳의 코드는 브라우저에 노출되지않음
 
       if(!formData.get('id')){  //id값이 없을 때 메시지 출력
@@ -20,6 +19,10 @@ export default function signup(){
       if(!formData.get('name')){ //name 값이 없을 때 메시지 출력
         return {message: 'no_name'};
       }
+      if(!formData.get('nickname')){ //nickname 값이 없을 때 메시지 출력
+        return {message: 'no_nick'};
+      }
+      
 
       try{
       const response=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`,
@@ -27,7 +30,7 @@ export default function signup(){
         method:'post',
         body:formData,
         credentials:'include',  //쿠키 판별
-      })
+      });
       console.log(response.status);
       if(response.status===403){    //회원가입 중 이미 똑같은 아이디로 가입한 회원이 있는 경우 알려주기 위함
         return {message:'user_exists'};
@@ -36,12 +39,14 @@ export default function signup(){
       shouldRedirect=true;
     }catch(err){
       console.error(err);
+      
     }
 
     if(shouldRedirect){
       redirect('/home'); //try catch 내부에서는 사용 불가
     }
-
+    return { message: null };
 
     }
-}
+
+    export default submit;
