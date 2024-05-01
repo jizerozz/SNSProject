@@ -3,6 +3,12 @@ import {http, HttpResponse} from 'msw';
 export const handlers=[
         http.post('/api/login', ()=>{
             return HttpResponse.json( {
+                
+                userId:1,
+                nickname:'zxxzero',
+                id:'jizero',
+                image:'/kkkkkamja.png',
+            },{
                 headers: {
                   'Set-Cookie': 'connect.sid=msw-cookie;HttpOnly;Path=/'
                 }
