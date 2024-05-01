@@ -1,29 +1,44 @@
 "use client";
 
-import React, {useState} from "react";
+import React, {ChangeEventHandler, useState} from "react";
 import style from "@/app/(beforelogin)/_component/login.module.css"
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 export default function LoginModal(){
-    const [id, setId]=useState();
-    const [pw, setPw]=useState();
+    const [id, setId]=useState('');
+    const [pw, setPw]=useState('');
     const [message, setMessage]=useState("");
     
     const Router=useRouter();
 
-    const OnSubmit=()=>{
-    
+    const OnSubmit:ChangeEventHandler<HTMLFormElement>=async(e)=>{
+        e.preventDefault();
+        setMessage('');
+        try{
+        await signIn("credentials",{
+            username:id,
+            password,
+            redirect:false, //서버 redirect off
+        });
+        Router.replace('/home');
+    }catch(err){
+        console.error(err);
+        setMessage('아이디와 비번이 일치하지않음');
+    }
     };
 
     const OnClickClose=()=>{
         Router.back();
     };
 
-    const OnChangeId=()=>{
+    const OnChangeId:ChangeEventHandler<HTMLInputElement>=(e)=>{
+        setId(e.target.value);
 
     };
 
-    const OnChangePwd=()=>{
+    const OnChangePwd:ChangeEventHandler<HTMLInputElement>=(e)=>{
+        setPw(e.target.value);
 
     };
 
