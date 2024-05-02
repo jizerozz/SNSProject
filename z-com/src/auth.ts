@@ -1,5 +1,6 @@
 import NextAuth, {CredentialsSignin} from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { NextResponse } from "next/server";
 
 
 export const{
@@ -10,6 +11,14 @@ export const{
     pages:{
         signIn:"/i/flow/login",
         newUser:"i/flow/signup",
+    },
+    callbacks:{
+        async authorized({request, auth}){
+            if(!auth){
+                return NextResponse.redirect("http://localhost:3000/i/flow/login"); //세션이 없으면 login창으로 redirect(예. 로그인 하지 않은 상태에서 home으로 갔을 경우 로그인창이 뜨도록 함)
+            }
+            return true; //있는경우 그대로 진행
+        }
     },
     providers:[
     CredentialsProvider({
@@ -39,7 +48,7 @@ export const{
         const user = await authResponse.json();
         console.log('user', user);
           return {                  //return user 했으나 ts에서 오류 뱉어서 우회시킴
-            id:user.id,
+            email:user.id,          //id:user.id 값은 안읽힘 type.ts의 user에 있는 email로 대체
             name:user.nickname,
             image:user.image,
             ...user,
