@@ -1,12 +1,18 @@
 "use client";
 
 import style from "@/app/(afterlogin)/_component/followRecommend.module.css";
-
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function FollowRecommend(){
-    
-    const onFollow=()=>{
+    const route=useRouter();
+    const session=useSession();
 
+
+    const onFollow=()=>{
+        if(!session.data?.user){
+            route.replace('/i/flow/login');
+        }
     };
     
     const User={
@@ -15,7 +21,7 @@ export default function FollowRecommend(){
         image:'/yRsRRjGO.jpg',    
     };
     
-    return(
+    return(    
     <div className={style.container}>
         <div className={style.userLogoSection}>
             <div className={style.userLogo}>
@@ -31,5 +37,5 @@ export default function FollowRecommend(){
         </div>
     </div>
     );
-
+    
 }
