@@ -8,13 +8,15 @@ import LogoutMenu from "./_component/logoutMenu";
 import TrendSection from "@/app/(afterlogin)/_component/trendSection";
 import FollowRecommend from "@/app/(afterlogin)/_component/followRecommend";
 import RightSearchSection from "./_component/rightSearch";
+import { auth } from "@/auth";
 
 
 
 type Props={children:ReactNode, modal:ReactNode}
 
-export default function AfterLoginLayout({children, modal}:Props) 
+export default async function AfterLoginLayout({children, modal}:Props) 
 {
+    const session=await auth();
     return (
         <div className={style.container}>
             <header className={style.leftSectionWrapper}>
@@ -25,6 +27,7 @@ export default function AfterLoginLayout({children, modal}:Props)
                             <Image src={zlogo} alt="z-com logo" width={40}/>
                         </div>
                     </Link>
+                    {session?.user&&<>              
                     <nav>
                         <ul>
                             <NavMenu/>
@@ -34,6 +37,7 @@ export default function AfterLoginLayout({children, modal}:Props)
                         </li>
                     </nav>
                     <LogoutMenu/>
+                    </>}
                     </div>
                 </section>
                 </header>
