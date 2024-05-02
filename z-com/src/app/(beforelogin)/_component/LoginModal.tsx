@@ -18,7 +18,7 @@ export default function LoginModal(){
         try{
         await signIn("credentials",{
             username:id,
-            password,
+            pw,
             redirect:false, //서버 redirect off
         });
         Router.replace('/home');

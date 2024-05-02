@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, {CredentialsSignin} from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 
@@ -24,16 +24,28 @@ export const{
             password: credentials.password,
             }),
         });
-  
+        console.log(authResponse.status, authResponse.statusText)
           if (!authResponse.ok) {
-            return null;
+            const credentialsSignin=new CredentialsSignin();
+            if(authResponse.status===404){
+                credentialsSignin.code='no_user';
+            }
+            else if(authResponse.status===401){
+                credentialsSignin.code='wrong_password';
+            }
+            throw credentialsSignin;
           }
   
-          const user = await authResponse.json();
-  
-          return user;
-        },
-    }),
+        const user = await authResponse.json();
+        console.log('user', user);
+          return {                  //return user 했으나 ts에서 오류 뱉어서 우회시킴
+            id:user.id,
+            name:user.nickname,
+            image:user.image,
+            ...user,
+        }
+    },
+}),
     ]
 });
 

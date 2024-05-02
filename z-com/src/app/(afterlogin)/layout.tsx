@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import zlogo from "../../../public/zlogo.png";
 import NavMenu from "@/app/(afterlogin)/_component/navMenu";
-import LogoutMenu from "@/app/(afterlogin)/_component/logoutMenu";
+import LogoutMenu from "./_component/logoutMenu";
 import TrendSection from "@/app/(afterlogin)/_component/trendSection";
 import FollowRecommend from "@/app/(afterlogin)/_component/followRecommend";
 import RightSearchSection from "./_component/rightSearch";
@@ -33,7 +33,7 @@ export default function AfterLoginLayout({children, modal}:Props)
                             <Link href="/compose/tweet" className={style.postButton}>게시하기</Link>
                         </li>
                     </nav>
-                    <div><LogoutMenu/></div>
+                    <LogoutMenu/>
                     </div>
                 </section>
                 </header>

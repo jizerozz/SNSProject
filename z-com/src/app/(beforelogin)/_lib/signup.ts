@@ -1,10 +1,9 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { signIn } from "@/auth";
 
 const submit=async(prevstate:any, formData:FormData)=>{
-    let shouldRedirect=false;
-
       //이 곳의 코드는 브라우저에 노출되지않음
 
       if(!formData.get('id')){  //id값이 없을 때 메시지 출력
@@ -22,7 +21,7 @@ const submit=async(prevstate:any, formData:FormData)=>{
       if(!formData.get('nickname')){ //nickname 값이 없을 때 메시지 출력
         return {message: 'no_nick'};
       }
-      
+      let shouldRedirect=false;
 
       try{
       const response=await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`,
@@ -37,6 +36,12 @@ const submit=async(prevstate:any, formData:FormData)=>{
       }
       console.log(await response.json());
       shouldRedirect=true;
+
+      await signIn("credentials",{  //회원가입 성공 후 로그인까지 같이 하게함
+        username:formData.get('id'),
+        password:formData.get('pw'),
+        redirect:false, //서버 redirect off
+    });
     }catch(err){
       console.error(err);
       

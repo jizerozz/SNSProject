@@ -4,7 +4,7 @@ import style from "@/app/(afterlogin)/_component/trendSection.module.css";
 import Trend from "@/app/(afterlogin)/_component/trend";
 import { usePathname } from "next/navigation";
 
-export default function trendSection(){
+export default function TrendSection(){
     const pathname=usePathname();
 
     if(pathname==='/explore') return null;

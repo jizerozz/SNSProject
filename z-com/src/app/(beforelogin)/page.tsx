@@ -1,10 +1,11 @@
-import Image from "next/image";
-import styles from "@/app/page.module.css";
-import Link from "next/link";
-import zlogo from "../../../public/zlogo.png";
+"use client";
+
+import { useRouter } from "next/navigation";
 import MainModal from "./_component/MainModal";
 
 export default function Home() {
+  const router=useRouter();
+  router.replace('/i/flow/login');
   return (
     <MainModal/>
   );
