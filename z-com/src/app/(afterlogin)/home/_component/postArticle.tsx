@@ -3,6 +3,7 @@
 import { ReactNode } from "react";
 import style from './post.module.css';
 import { useRouter } from "next/navigation";
+import { Post } from "@/model/post";
 
 type props={                //target에 대한 type 정의
     children:ReactNode,

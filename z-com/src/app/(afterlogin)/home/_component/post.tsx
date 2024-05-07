@@ -6,29 +6,23 @@ import ActionButton from "./actionButton";
 import PostArticle from "./postArticle";
 import { faker } from "@faker-js/faker";
 import Postimages from "@/app/(afterlogin)/home/_component/postImage";
+import { Post as IPost } from "@/model/post";
 
 dayjs.locale('ko');
 dayjs.extend(relativeTime);
 
-export default function Post(){
 
-    const target={
-        postId:1,
-        User:{
-            id:'kkamjaddi',
-            nickname:'kkamja',
-            image:'/kkkkkamja.png',
-        },
+type Props={
+    noImage?:boolean
+    post:IPost
+}
+export default function Post({noImage,post}:Props){
 
-        content:'클론 코딩 클론 코딩 클론 코딩 클론 코딩',
-        createAt:new Date(),
-        images:[] as any[],
-    }
-
+   const target=post;
     if(Math.random()>0.5){
         target.images.push(
-        {imageId:1, Link:faker.image.urlLoremFlickr()}, //이미지 1개일 때
-        {imageId:2, Link:faker.image.urlLoremFlickr()} //이미지 2개일 때
+        {ImageId:1, Link:faker.image.urlLoremFlickr()}, //이미지 1개일 때
+        {ImageId:2, Link:faker.image.urlLoremFlickr()} //이미지 2개일 때
         )
     }
 
