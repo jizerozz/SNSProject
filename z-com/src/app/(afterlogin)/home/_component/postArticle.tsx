@@ -20,7 +20,7 @@ type props={                //target에 대한 type 정의
 }
 };
 
-export default function postArticle({children, post}:props){
+export default function PostArticle({children, post}:props){
     const router=useRouter();
     const onClick=()=>{
         router.push(`/${post.User.id}/status/${post.postId}`);
