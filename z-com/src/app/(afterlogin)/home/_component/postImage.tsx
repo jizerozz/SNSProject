@@ -1,20 +1,20 @@
 import style from "@/app/(afterlogin)/home/_component/post.module.css";
 import Link from "next/link";
 import cx from "classnames";
+import { Post as IPost } from "@/model/post";
 
 type Props={            //postArticle에서 정의해둔 target의 type
-    post:{
-        content:string,
-        postId:number,
-    User:{
-        id:string,
-        nickname:string,
-        image:string,
-    }
-    ,
-    createAt:Date,
-    images:any[],
-}
+    post: {
+        postId: number;
+        content: string,
+        user: {
+          id: string,
+          nickname: string,
+          image: string,
+        },
+        createAt: Date,
+        images: any[],
+      }
 };
 
 
@@ -26,7 +26,7 @@ export default function PostImage({post}:Props){
     if(post.images.length===1){
         return(
                 <Link 
-                href={`/${post.User.id}/status/${post.postId}/photo/${post.images[0].imageId}`} 
+                href={`/${post.user.id}/status/${post.postId}/photo/${post.images[0].ImageId}`} 
                 className={cx(style.postImageSection, style.oneImage)}
                 style={{backgroundImage: `url(${post.images[0]?.Link})`, backgroundSize:'contain'}}
                 > 
@@ -40,11 +40,11 @@ export default function PostImage({post}:Props){
                 <div
                 className={cx(style.postImageSection, style.twoImage)}>
                 <Link
-                href={`/${post.User.id}/status/${post.postId}/photo/${post.images[0].imageId}`}  
+                href={`/${post.user.id}/status/${post.postId}/photo/${post.images[0].ImageId}`}  
                 style={{backgroundImage:`url(${post.images[0]?.Link})`, backgroundSize:'cover'}}></Link>
 
                 <Link
-                href={`/${post.User.id}/status/${post.postId}/photo/${post.images[0].imageId}`}
+                href={`/${post.user.id}/status/${post.postId}/photo/${post.images[0].ImageId}`}
                 style={{backgroundImage:`url(${post.images[1]?.Link})`, backgroundSize:'cover'}}                
                 ></Link>
                 
@@ -55,19 +55,35 @@ export default function PostImage({post}:Props){
     }
     if(post.images.length===3){
         return(
-                <Link href={`/${post.User.id}/status/${post.postId}/photo/${post.images[0].imageId}`} 
-                className={cx(style.postImageSection, style.threeImage)}>
-                <img src={post.images[0]?.Link} alt=""/>
-                </Link>  
+                <div className={cx(style.postImageSection, style.threeImage)}>
+                <Link href={`/${post.user.id}/status/${post.postId}/photo/${post.images[0].ImageId}`}
+                style={{backgroundImage:`url(${post.images[0]?.Link})`, backgroundSize:'cover'}}></Link>
+
+                <Link href={`/${post.user.id}/status/${post.postId}/photo/${post.images[0].ImageId}`}
+                style={{backgroundImage:`url(${post.images[1]?.Link})`, backgroundSize:'cover'}}></Link>
+
+                <Link href={`/${post.user.id}/status/${post.postId}/photo/${post.images[0].ImageId}`}
+                style={{backgroundImage:`url(${post.images[2]?.Link})`, backgroundSize:'cover'}}></Link>
+                </div>
         );
 
     }
     if(post.images.length===4){
         return(
-                <Link href={`/${post.User.id}/status/${post.postId}/photo/${post.images[0].imageId}`} 
-                className={cx(style.postImageSection, style.fourImage)}>
-                <img src={post.images[0]?.Link} alt=""/>
-                </Link>  
+            <div className={cx(style.postImageSection, style.fourImage)}>
+                <Link href={`/${post.user.id}/status/${post.postId}/photo/${post.images[0].ImageId}`}
+                style={{backgroundImage:`url(${post.images[0]?.Link})`, backgroundSize:'cover'}}></Link>
+
+                <Link href={`/${post.user.id}/status/${post.postId}/photo/${post.images[0].ImageId}`}
+                style={{backgroundImage:`url(${post.images[1]?.Link})`, backgroundSize:'cover'}}></Link>
+
+                <Link href={`/${post.user.id}/status/${post.postId}/photo/${post.images[0].ImageId}`}
+                style={{backgroundImage:`url(${post.images[2]?.Link})`, backgroundSize:'cover'}}></Link>
+
+                <Link href={`/${post.user.id}/status/${post.postId}/photo/${post.images[0].ImageId}`}
+                style={{backgroundImage:`url(${post.images[3]?.Link})`, backgroundSize:'cover'}}></Link>
+
+                </div>
         );
 
     }

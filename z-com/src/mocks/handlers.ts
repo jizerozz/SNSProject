@@ -13,8 +13,8 @@ function generateDate(){
 }
 
 const User=[
-    {id:'elonmusk', nickname:'elon musk', image: '/elonmusk'},
-    {id:'kim', nickname:'kim kim', image:'/kimkim'},
+    {id:'elonmusk', nickname:'elon musk', image: '/elonmusk.jpg'},
+    {id:'kim', nickname:'kim kim', image:'/kimkim.jpg'},
     {id:'lee', nickname:'Lee', image:faker.image.avatar()},
 ];
 
@@ -41,7 +41,7 @@ export const handlers=[
                 }
             })
         }),
-        http.post('api/users', async({request})=>{
+        http.post(`/api/users`, async({request})=>{
             console.log('회원가입');
 
             //에러용
@@ -49,41 +49,50 @@ export const handlers=[
             //성공용
             return HttpResponse.text(JSON.stringify('ok'),{
                 headers:{
-                    'Set-cookie':'connect.sid=msw-cookie,HttpOnly;Path=/;',
+                    'Set-cookie':'connect.sid=msw-cookie,HttpOnly;Path=/;Max-Age=0',
                 },
             })
         }),
 
 
-        http.get('/api/postRecommends', ({request})=>{ //post 데이터
+        http.get(`/api/postRecommends`, async({request})=>{ //post 데이터
+            console.log("post data value")
+            const url=new URL(request.url);
             return HttpResponse.json([
                 {
                     postId:1,
-                    User:User[0],
+                    user:User[0],
                     content:`${1} Z.com is so marvelous. I'm gonna buy that`,
-                    Images:[{imageId:1, link:faker.image.urlLoremFlickr()}],
-                    createdAt:generateDate(),
+                    images:[{ImageId:1, link:faker.image.urlLoremFlickr()}],
+                    createAt:generateDate(),
                 },
                 {
                     postId:2,
-                    User:User[0],
+                    user:User[0],
                     content:`${2} Z.com is so marvelous. I'm gonna buy that`,
-                    Images:[{imageId:2, link:faker.image.urlLoremFlickr()}],
-                    createdAt:generateDate(),
+                    images:[{ImageId:2, link:faker.image.urlLoremFlickr()}],
+                    createAt:generateDate(),
                 },
                 {
                     postId:3,
-                    User:User[0],
+                    user:User[1],
                     content:`${3} Z.com is so marvelous. I'm gonna buy that`,
-                    Images:[{imageId:3, link:faker.image.urlLoremFlickr()}],
-                    createdAt:generateDate(),
+                    images:[{ImageId:3, link:faker.image.urlLoremFlickr()}],
+                    createAt:generateDate(),
                 },
                 {
                     postId:4,
-                    User:User[0],
-                    content:`${3} Z.com is so marvelous. I'm gonna buy that`,
-                    Images:[{imageId:4, link:faker.image.urlLoremFlickr()}],
-                    createdAt:generateDate(),
+                    user:User[2],
+                    content:`${4} Z.com is so marvelous. I'm gonna buy that`,
+                    images:[{ImageId:4, link:faker.image.urlLoremFlickr()}],
+                    createAt:generateDate(),
+                },
+                {
+                    postId:5,
+                    user:User[0],
+                    content:`${5} Z.com is so marvelous. I'm gonna buy that`,
+                    images:[{ImageId:4, link:faker.image.urlLoremFlickr()}],
+                    createAt:generateDate(),
                 },
 
             ] )

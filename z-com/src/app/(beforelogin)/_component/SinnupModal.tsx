@@ -39,13 +39,13 @@ export default function Signup(){
               <div className={style.modalBody}>
                 <div className={style.inputDiv}>
                   <label className={style.inputLabel} htmlFor="id">아이디</label>
-                  <input id="id" className={style.input} type="text" placeholder=""
+                  <input id="id" name="id" className={style.input} type="text" placeholder=""
                       required
                   />
                 </div>
                 <div className={style.inputDiv}>
                   <label className={style.inputLabel} htmlFor="name">닉네임</label>
-                  <input id="name" name="id" className={style.input} type="text" placeholder=""
+                  <input id="nickname" name="nickname" className={style.input} type="text" placeholder=""
                         required
                   />
                 </div>

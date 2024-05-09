@@ -9,13 +9,13 @@ import TrendSection from "@/app/(afterlogin)/_component/trendSection";
 import FollowRecommend from "@/app/(afterlogin)/_component/followRecommend";
 import RightSearchSection from "./_component/rightSearch";
 import { auth } from "@/auth";
-import RQProvider from "./_component/RQProvider";
+import RQProvider from "@/app/(afterlogin)/_component/RQProvider";
 
 
 
-type Props={Children:ReactNode, modal:ReactNode}
+type Props={children:ReactNode, modal:ReactNode}
 
-export default async function AfterLoginLayout({Children, modal}:Props) 
+export default async function AfterLoginLayout({children, modal}:Props) 
 {
     const session=await auth();
     return (
@@ -45,8 +45,7 @@ export default async function AfterLoginLayout({Children, modal}:Props)
                 <RQProvider>
             <div className={style.rightSectionWrapper}>
                 <div className={style.rightSectionInner}>
-                
-                <main className={style.main}>{Children}</main>
+                <main className={style.main}>{children}</main>
                 <section className={style.rightSection}>
                     <RightSearchSection/>
                     <TrendSection/>

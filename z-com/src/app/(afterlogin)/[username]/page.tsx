@@ -1,19 +1,20 @@
 import Image from "next/image";
-import style from "./profile.module.css";
-import Post from "../home/_component/post";
+import style from "@/app/(afterlogin)/[username]/profile.module.css";
+import Post from "@/app/(afterlogin)/home/_component/post";
 import BackButton from "../home/_component/backButton";
+import { User } from "@/model/user";
+import { Post as IPost } from "@/model/post";
 
 
 export default function Profile() {
-  const user={
-    id:'zxxzero',
-    nickname: 'jizero',
-    image: '/kkkkkamja.png',
-  };
+ const user={
+  id:'zxxzero',
+  nickname: 'jizero',
+  image: '/kkkkkamja.png',
+ };
+
   
   return (
-    
-
     <main className={style.main}>
       <div className={style.header}>
         <button className={style.backButton}>
@@ -32,14 +33,12 @@ export default function Profile() {
             <button className={style.followButton}>팔로우</button>
         </div>
         <div>
+          {/* <Post/>
           <Post/>
           <Post/>
           <Post/>
           <Post/>
-          <Post/>
-          <Post/>
-          <Post/>
-          <Post/>
+          <Post/> */}
         </div>
     </main>
   );

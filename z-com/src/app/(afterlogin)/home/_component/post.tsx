@@ -18,30 +18,31 @@ type Props={
 }
 export default function Post({noImage,post}:Props){
 
-   const target=post;
-    if(Math.random()>0.5){
-        target.images.push(
-        {ImageId:1, Link:faker.image.urlLoremFlickr()}, //이미지 1개일 때
-        {ImageId:2, Link:faker.image.urlLoremFlickr()} //이미지 2개일 때
-        )
-    }
+const target=post;
 
+
+//   if(Math.random()>0.5){
+//     target.images.push(
+//     {ImageId:1, Link:faker.image.urlLoremFlickr()}, //이미지 1개일 때
+//     {ImageId:2, Link:faker.image.urlLoremFlickr()} //이미지 2개일 때
+//     )
+//     }
 
     return(
     <PostArticle post={target}>
         <div className={style.postWrapper}>
-            <div className={style.postUserSection}>
-                <Link href={`/${target.User.id}`} className={style.postUserImage}>
-                    <img src={target.User.image} alt={target.User.nickname}></img>
+            <div className={style.postuserSection}>
+                <Link href={`/${target.user.id}`} className={style.postuserImage}>
+                    <img src={target.user.image} alt={target.user.nickname}></img>
                 </Link>
                 <div className={style.postShade}/>
             </div>
             <div className={style.postBody}>
                 <div className={style.postMeta}>
-                <Link href={`${target.User.id}`}>
-                    <span className={style.postUserName}>{target.User.nickname}</span>
+                <Link href={`${target.user.id}`}>
+                    <span className={style.postuserName}>{target.user.nickname}</span>
                     &nbsp;
-                    <span className={style.postUserId}>@{target.User.id}</span>
+                    <span className={style.postuserId}>@{target.user.id}</span>
                     &nbsp;
                     *
                     &nbsp;

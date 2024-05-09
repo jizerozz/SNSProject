@@ -13,8 +13,10 @@ function RQProvider({children}:Props){
         new QueryClient({
             defaultOptions:{
                 queries:{
-                    refetchOnWindowFocus:false,
-                    retry:false,
+                    refetchOnWindowFocus:false, //tab 전환 후 돌아올 때 새로운 데이터를 가져오는 것
+                    retryOnMount:true, //컴포넌트 리마운트
+                    refetchOnReconnect:true, //인터넷 연결이 끊겼다가 다시 접속됐을 때 데이터를 다시 가져오는 것
+                    retry:false, //연결 실패 시 재시도
                 },
             },
         })

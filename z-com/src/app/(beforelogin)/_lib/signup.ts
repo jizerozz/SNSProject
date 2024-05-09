@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 import { signIn } from "@/auth";
 
-const submit=async(prevstate:any, formData:FormData)=>{
+const onSubmit=async(prevstate:any, formData:FormData)=>{
       //이 곳의 코드는 브라우저에 노출되지않음
 
       if(!formData.get('id')){  //id값이 없을 때 메시지 출력
@@ -39,7 +39,7 @@ const submit=async(prevstate:any, formData:FormData)=>{
 
       await signIn("credentials",{  //회원가입 성공 후 로그인까지 같이 하게함
         username:formData.get('id'),
-        password:formData.get('pw'),
+        password:formData.get('password'),
         redirect:false, //서버 redirect off
     });
     }catch(err){
@@ -48,10 +48,10 @@ const submit=async(prevstate:any, formData:FormData)=>{
     }
 
     if(shouldRedirect){
-      redirect('/home'); //try catch 내부에서는 사용 불가
+      redirect(`/home`); //try catch 내부에서는 사용 불가
     }
     return { message: null };
 
     }
 
-    export default submit;
+    export default onSubmit;

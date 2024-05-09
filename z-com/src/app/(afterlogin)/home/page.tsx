@@ -1,12 +1,12 @@
 import Image from "next/image";
-import style from "./home.module.css";
+import style from "@/app/(afterlogin)/home/home.module.css";
 import Tab from "@/app/(afterlogin)/home/_component/tab";
 import PostForm from "@/app/(afterlogin)/home/_component/postform";
 import TabProvider from "@/app/(afterlogin)/home/_component/tabProvider";
 import Post from "@/app/(afterlogin)/home/_component/post";
 import { QueryClient, dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { cache } from "react";
-import { getPostRecommends } from "./_lib/getPostRecommends";
+import  {getPostRecommends}  from "@/app/(afterlogin)/home/_lib/getPostRecommends";
 import PostRecommends from "./_component/postRecommends";
 
 

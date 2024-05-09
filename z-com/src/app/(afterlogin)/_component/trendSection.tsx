@@ -10,7 +10,7 @@ export default function TrendSection(){
     const session=useSession();
 
     if(pathname==='/explore') return null;
-    if(session.data?.user){
+    //if(session.data?.user){
     return(
         <div className={style.trendBg}>
             <div className={style.trend}>
@@ -24,13 +24,15 @@ export default function TrendSection(){
             </div>
         </div>
         );
-    }
+    //}
+    if(!session.data?.user){
     return (
         <div className={style.trendBg}>
             <div className={style.notrend}>
                 트렌드를 가져올 수 없습니다. 로그인하세요.
             </div>
-        </div>
+        </div>   
     )
+}
 
 }

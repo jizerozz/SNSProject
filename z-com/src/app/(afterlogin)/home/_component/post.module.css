@@ -118,7 +118,31 @@
 }
 .postImageSection.threeImage{
     height: 272px;
+    flex-direction:row;
+    display: flex;
+    gap:2px;
+
 }
+
+.postImageSection.threeImage a{
+    flex:1;
+}
+
+
+.postImageSection.threeImage a:first-child{
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+
+}
+.postImageSection.threeImage a:nth-child(2){
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 8px;
+}
+.postImageSection.threeImage a:third-child{
+    border-top-right-radius: 16px;
+    border-bottom-right-radius:8px;
+}
+
 .postImageSection.fourImage{
     height: 272px;
 }
