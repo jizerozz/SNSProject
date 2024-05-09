@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker';
+import { Faker, faker } from '@faker-js/faker';
 import {http, HttpResponse} from 'msw';
 import { headers } from 'next/headers';
 
@@ -13,8 +13,8 @@ function generateDate(){
 }
 
 const User=[
-    {id:'elonmusk', nickname:'elon musk', image: '/elonmusk.jpg'},
-    {id:'kim', nickname:'kim kim', image:'/kimkim.jpg'},
+    {id:'elonmusk', nickname:'elon musk', image: '/kkkkkamja.png'},
+    {id:'hell', nickname:'junkfood', image:'/hell.png'},
     {id:'lee', nickname:'Lee', image:faker.image.avatar()},
 ];
 
@@ -63,38 +63,80 @@ export const handlers=[
                     postId:1,
                     user:User[0],
                     content:`${1} Z.com is so marvelous. I'm gonna buy that`,
-                    images:[{ImageId:1, link:faker.image.urlLoremFlickr()}],
+                    images:[{ImageId:1, Link:faker.image.urlLoremFlickr()}],
                     createAt:generateDate(),
                 },
                 {
                     postId:2,
-                    user:User[0],
-                    content:`${2} Z.com is so marvelous. I'm gonna buy that`,
-                    images:[{ImageId:2, link:faker.image.urlLoremFlickr()}],
+                    user:User[1],
+                    content:`${2} woowek.........`,
+                    images:[{ImageId:2, Link:faker.image.urlLoremFlickr()}],
                     createAt:generateDate(),
                 },
                 {
                     postId:3,
-                    user:User[1],
+                    user:User[0],
                     content:`${3} Z.com is so marvelous. I'm gonna buy that`,
-                    images:[{ImageId:3, link:faker.image.urlLoremFlickr()}],
+                    images:[{ImageId:3, Link:faker.image.urlLoremFlickr()}],
                     createAt:generateDate(),
                 },
                 {
                     postId:4,
-                    user:User[2],
+                    user:User[0],
                     content:`${4} Z.com is so marvelous. I'm gonna buy that`,
-                    images:[{ImageId:4, link:faker.image.urlLoremFlickr()}],
+                    images:[{ImageId:1, Link:faker.image.urlLoremFlickr()}],
                     createAt:generateDate(),
                 },
                 {
                     postId:5,
                     user:User[0],
                     content:`${5} Z.com is so marvelous. I'm gonna buy that`,
-                    images:[{ImageId:4, link:faker.image.urlLoremFlickr()}],
+                    images:[{ImageId:1, Link:faker.image.urlLoremFlickr()}],
                     createAt:generateDate(),
                 },
 
             ] )
+        }),
+
+        http.get(`/api/followPosting`, async({request})=>{
+            return HttpResponse.json(
+                [
+                    {
+                        postId:1,
+                        user:User[0],
+                        content:`${1} not following me`,
+                        images:[{ImageId:1, Link:faker.image.urlLoremFlickr()}],
+                        createAt:generateDate(),
+                    },
+                    {
+                        postId:2,
+                        user:User[1],
+                        content:`${2} not following me`,
+                        images:[{ImageId:2, Link:faker.image.urlLoremFlickr()}],
+                        createAt:generateDate(),
+                    },
+                    {
+                        postId:3,
+                        user:User[2],
+                        content:`${3} not following me`,
+                        images:[{ImageId:3, Link:faker.image.urlLoremFlickr()}],
+                        createAt:generateDate(),
+                    },
+                    {
+                        postId:4,
+                        user:User[0],
+                        content:`${1} not following me`,
+                        images:[{ImageId:1, Link:faker.image.urlLoremFlickr()}],
+                        createAt:generateDate(),
+                    },
+                    {
+                        postId:5,
+                        user:User[0],
+                        content:`${1} not following me`,
+                        images:[{ImageId:1, Link:faker.image.urlLoremFlickr()}],
+                        createAt:generateDate(),
+                    }
+                ]
+            )
         })
 ]

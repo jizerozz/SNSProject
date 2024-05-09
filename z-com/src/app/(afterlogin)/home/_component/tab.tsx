@@ -1,21 +1,22 @@
 "use client"
 
 import style from "@/app/(afterlogin)/home/_component/tab.module.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { TabContext } from "./tabProvider";
 
 
 
 export default function Tab(){
 
-    const [tab, setTab]=useState('Rec');
+     const {tab, setTab}=useContext(TabContext);   //tapprovider에서 tabcontext 정보를 불러와서 사용
     
     const onClickFol=()=>{
-        setTab('Fol');
+        setTab('fol');
 
     };
 
     const onClickRec=()=>{
-        setTab('Rec');
+        setTab('rec');
     };
 
 
@@ -25,11 +26,11 @@ export default function Tab(){
         <div className={style.homeTab}>
             <div onClick={onClickRec}>
                 추천
-                <div className={style.tabIndicator} hidden={tab==='Fol'}/>                
+                <div className={style.tabIndicator} hidden={tab==='fol'}/>                
             </div>
             <div onClick={onClickFol}>
                 팔로우 중
-                <div className={style.tabIndicator} hidden={tab==='Rec'}/>
+                <div className={style.tabIndicator} hidden={tab==='rec'}/>
             </div>
         </div>
         </div>

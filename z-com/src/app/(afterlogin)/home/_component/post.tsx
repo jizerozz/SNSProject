@@ -31,9 +31,9 @@ const target=post;
     return(
     <PostArticle post={target}>
         <div className={style.postWrapper}>
-            <div className={style.postuserSection}>
-                <Link href={`/${target.user.id}`} className={style.postuserImage}>
-                    <img src={target.user.image} alt={target.user.nickname}></img>
+            <div className={style.postUserSection}>
+                <Link href={`/${target.user.id}`} className={style.postUserImage}>
+                    <img src={target.user.image} alt={target.user.nickname}/>
                 </Link>
                 <div className={style.postShade}/>
             </div>
@@ -50,13 +50,10 @@ const target=post;
                     <span className={style.postDate}>{dayjs(target.createAt).fromNow(true)}</span>
                 </div>
                 <div>{target.content}</div>
-                <div className={style.postImageSection}>
                 <Postimages post={target}/>
-                </div>
                 <ActionButton/>
             </div>
         </div>
     </PostArticle>
     );
-
 }

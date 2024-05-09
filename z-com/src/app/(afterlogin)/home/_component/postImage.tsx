@@ -41,12 +41,16 @@ export default function PostImage({post}:Props){
                 className={cx(style.postImageSection, style.twoImage)}>
                 <Link
                 href={`/${post.user.id}/status/${post.postId}/photo/${post.images[0].ImageId}`}  
-                style={{backgroundImage:`url(${post.images[0]?.Link})`, backgroundSize:'cover'}}></Link>
-
+                style={{backgroundImage:`url(${post.images[0]?.Link})`, backgroundSize:'cover'}}>
+                    <img src={post.images[0]?.Link} alt=""/>
+                </Link>
+                
                 <Link
-                href={`/${post.user.id}/status/${post.postId}/photo/${post.images[0].ImageId}`}
+                href={`/${post.user.id}/status/${post.postId}/photo/${post.images[1].ImageId}`}
                 style={{backgroundImage:`url(${post.images[1]?.Link})`, backgroundSize:'cover'}}                
-                ></Link>
+                >
+                    <img src={post.images[1]?.Link} alt=""/>
+                </Link>
                 
                 </div>
                 
@@ -57,13 +61,19 @@ export default function PostImage({post}:Props){
         return(
                 <div className={cx(style.postImageSection, style.threeImage)}>
                 <Link href={`/${post.user.id}/status/${post.postId}/photo/${post.images[0].ImageId}`}
-                style={{backgroundImage:`url(${post.images[0]?.Link})`, backgroundSize:'cover'}}></Link>
+                style={{backgroundImage:`url(${post.images[0]?.Link})`, backgroundSize:'cover'}}>
+                    <img src={post.images[0]?.Link} alt=""/>
+                </Link>
 
-                <Link href={`/${post.user.id}/status/${post.postId}/photo/${post.images[0].ImageId}`}
-                style={{backgroundImage:`url(${post.images[1]?.Link})`, backgroundSize:'cover'}}></Link>
+                <Link href={`/${post.user.id}/status/${post.postId}/photo/${post.images[1].ImageId}`}
+                style={{backgroundImage:`url(${post.images[1]?.Link})`, backgroundSize:'cover'}}>
+                    <img src={post.images[1]?.Link} alt=""/>
+                </Link>
 
-                <Link href={`/${post.user.id}/status/${post.postId}/photo/${post.images[0].ImageId}`}
-                style={{backgroundImage:`url(${post.images[2]?.Link})`, backgroundSize:'cover'}}></Link>
+                <Link href={`/${post.user.id}/status/${post.postId}/photo/${post.images[2].ImageId}`}
+                style={{backgroundImage:`url(${post.images[2]?.Link})`, backgroundSize:'cover'}}>
+                    <img src={post.images[2]?.Link} alt=""/>
+                </Link>
                 </div>
         );
 
